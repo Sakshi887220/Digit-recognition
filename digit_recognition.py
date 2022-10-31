@@ -49,17 +49,13 @@ while(True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     
     #Drawing a box in the center of the video
-    height, width = gray.shape
-    upper_left = (int(width / 2 - 56), int(height / 2 - 56))
-    bottom_right = (int(width / 2 + 56), int(height / 2 + 56))
-    cv2.rectangle(gray, upper_left, bottom_right, (0, 255, 0), 2)
-
+    
     #To only consider the area inside the box for detecting the digit
     #roi = Region Of Interest
-    roi = gray[upper_left[1]:bottom_right[1], upper_left[0]:bottom_right[0]]
+    
 
     #Converting cv2 image to pil format
-    im_pil = Image.fromarray(roi)
+    
 
     # convert to grayscale image - 'L' format means each pixel is 
     # represented by a single value from 0 to 255
@@ -77,12 +73,4 @@ while(True):
     print("Predicted class is: ", test_pred)
 
     # Display the resulting frame
-    cv2.imshow('frame',gray)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-      break
-  except Exception as e:
-    pass
-
-# When everything done, release the capture
-cap.release()
-cv2.destroyAllWindows()
+    
